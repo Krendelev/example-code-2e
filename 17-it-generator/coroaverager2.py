@@ -42,14 +42,11 @@ Using `yield from`:
     >>> def compute():
     ...     res = yield from averager2(True)  # <1>
     ...     print('computed:', res)  # <2>
-    ...     return res  # <3>
+    ...     yield res  # <3>
     ...
     >>> comp = compute()  # <4>
     >>> for v in [None, 10, 20, 30, STOP]:  # <5>
-    ...     try:
-    ...         comp.send(v)  # <6>
-    ...     except StopIteration as exc:  # <7>
-    ...         result = exc.value
+    ...     result = comp.send(v)  # <6>
     received: 10
     received: 20
     received: 30
